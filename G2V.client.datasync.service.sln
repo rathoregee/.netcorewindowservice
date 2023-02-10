@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "G2V.client.datasync.service", "G2V.client.datasync.service\G2V.client.datasync.service.csproj", "{CCD7B67F-D830-4FC4-BB68-916576508E8C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "G2V.client.datasync.service", "G2V.client.datasync.service\G2V.client.datasync.service.csproj", "{CCD7B67F-D830-4FC4-BB68-916576508E8C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "G2V.client.datasync.service.tests", "G2V.client.datasync.service.tests\G2V.client.datasync.service.tests.csproj", "{B91F6541-056D-4A74-8CFA-C492704D907D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "G2V.client.datasync.service.tests", "G2V.client.datasync.service.tests\G2V.client.datasync.service.tests.csproj", "{B91F6541-056D-4A74-8CFA-C492704D907D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
