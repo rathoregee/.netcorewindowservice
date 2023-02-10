@@ -16,17 +16,15 @@ namespace G2V.client.datasync.service.Classes
         private string _clientName;
         private const string mediaType = "application/json";
 
-        public ApiClient(IHttpClientFactory httpClientFactory, string ClientName)
+        public ApiClient(IHttpClientFactory factory, string clientName)
         {
-            _factory = httpClientFactory;
-            _clientName = ClientName;
+            _factory = factory;
+            _clientName = clientName;
         }
 
-        #region Generic, Async, static HTTP functions for GET, POST, PUT, and DELETE             
-
+        #region Generic, Async, static HTTP functions for GET, POST, PUT, and DELETE
         public async Task<T> GetAsync<T>(string url)
         {
-
             _client = _factory.CreateClient(_clientName);
             SetupHeaders(_client);
             using HttpResponseMessage response = await _client.GetAsync(url);
@@ -70,7 +68,7 @@ namespace G2V.client.datasync.service.Classes
         }
         #endregion
 
-        protected void SetupHeaders(HttpClient client)
+        protected static void SetupHeaders(HttpClient client)
         {
             client.DefaultRequestHeaders.Clear();
 
