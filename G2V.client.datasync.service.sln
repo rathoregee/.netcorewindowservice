@@ -7,6 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "G2V.client.datasync.service
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "G2V.client.datasync.service.tests", "G2V.client.datasync.service.tests\G2V.client.datasync.service.tests.csproj", "{B91F6541-056D-4A74-8CFA-C492704D907D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{378099C0-0924-4C93-AD80-76F4B81312F2}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

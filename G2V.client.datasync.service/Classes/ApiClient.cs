@@ -26,14 +26,14 @@ namespace G2V.client.datasync.service.Classes
 
         public async Task<T> GetAsync<T>(string url)
         {
-            T data;
+
             _client = _factory.CreateClient(_clientName);
             SetupHeaders(_client);
             using HttpResponseMessage response = await _client.GetAsync(url);
             using HttpContent content = response.Content;
-            string d = await content.ReadAsStringAsync();
-            data = JsonConvert.DeserializeObject<T>(d);
-            return (T)data;
+            string data = await content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<T>(data);
+            return result != null ? result : (T)new Object();
         }
 
         public async Task<T> PostAsync<T>(string url, HttpContent contentPost)
@@ -45,7 +45,8 @@ namespace G2V.client.datasync.service.Classes
             using HttpContent content = response.Content;
             string d = await content.ReadAsStringAsync();
             data = JsonConvert.DeserializeObject<T>(d);
-            return (T)data;
+            var result = JsonConvert.DeserializeObject<T>(data);
+            return result != null ? result : (T)new Object();
         }
 
         public async Task<T> PutAsync<T>(string url, HttpContent contentPut)
@@ -57,7 +58,8 @@ namespace G2V.client.datasync.service.Classes
             using HttpContent content = response.Content;
             string d = await content.ReadAsStringAsync();
             data = JsonConvert.DeserializeObject<T>(d);
-            return (T)data;
+            var result = JsonConvert.DeserializeObject<T>(data);
+            return result != null ? result : (T)new Object();
         }
 
         public async Task<T> DeleteAsync<T>(string url)
@@ -69,7 +71,8 @@ namespace G2V.client.datasync.service.Classes
             using HttpContent content = response.Content;
             string data = await content.ReadAsStringAsync();
             newT = JsonConvert.DeserializeObject<T>(data);
-            return newT;
+            var result = JsonConvert.DeserializeObject<T>(data);
+            return result != null ? result : (T)new Object();
         }
         #endregion
 
