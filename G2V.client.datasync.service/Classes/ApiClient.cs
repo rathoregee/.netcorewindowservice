@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,6 +14,7 @@ namespace G2V.client.datasync.service.Classes
         private IHttpClientFactory _factory;
         private HttpClient? _client = null;
         private string _clientName;
+        private const string mediaType = "application/json";
 
         public ApiClient(IHttpClientFactory httpClientFactory, string ClientName)
         {
@@ -24,83 +26,60 @@ namespace G2V.client.datasync.service.Classes
 
         public async Task<T> GetAsync<T>(string url)
         {
-            
-            try
-            {
-                T data;
-                _client = _factory.CreateClient(_clientName);
-                using HttpResponseMessage response = await _client.GetAsync(url);
-                using HttpContent content = response.Content;
-                string d = await content.ReadAsStringAsync();
-                if (d != null)
-                {
-                    data = JsonConvert.DeserializeObject<T>(d);
-                    return (T)data;
-                }
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
-            Object o = new Object();
-            return (T)o;
+            T data;
+            _client = _factory.CreateClient(_clientName);
+            SetupHeaders(_client);
+            using HttpResponseMessage response = await _client.GetAsync(url);
+            using HttpContent content = response.Content;
+            string d = await content.ReadAsStringAsync();
+            data = JsonConvert.DeserializeObject<T>(d);
+            return (T)data;
         }
 
         public async Task<T> PostAsync<T>(string url, HttpContent contentPost)
         {
             T data;
             _client = _factory.CreateClient(_clientName);
-            using (HttpResponseMessage response = await _client.PostAsync(url, contentPost))
-            using (HttpContent content = response.Content)
-            {
-                string d = await content.ReadAsStringAsync();
-                if (d != null)
-                {
-                    data = JsonConvert.DeserializeObject<T>(d);
-                    return (T)data;
-                }
-            }
-            Object o = new Object();
-            return (T)o;
+            SetupHeaders(_client);
+            using HttpResponseMessage response = await _client.PostAsync(url, contentPost);
+            using HttpContent content = response.Content;
+            string d = await content.ReadAsStringAsync();
+            data = JsonConvert.DeserializeObject<T>(d);
+            return (T)data;
         }
 
         public async Task<T> PutAsync<T>(string url, HttpContent contentPut)
         {
             T data;
             _client = _factory.CreateClient(_clientName);
-
-            using (HttpResponseMessage response = await _client.PutAsync(url, contentPut))
-            using (HttpContent content = response.Content)
-            {
-                string d = await content.ReadAsStringAsync();
-                if (d != null)
-                {
-                    data = JsonConvert.DeserializeObject<T>(d);
-                    return (T)data;
-                }
-            }
-            Object o = new Object();
-            return (T)o;
+            SetupHeaders(_client);
+            using HttpResponseMessage response = await _client.PutAsync(url, contentPut);
+            using HttpContent content = response.Content;
+            string d = await content.ReadAsStringAsync();
+            data = JsonConvert.DeserializeObject<T>(d);
+            return (T)data;
         }
 
         public async Task<T> DeleteAsync<T>(string url)
         {
             T newT;
             _client = _factory.CreateClient(_clientName);
-
-            using (HttpResponseMessage response = await _client.DeleteAsync(url))
-            using (HttpContent content = response.Content)
-            {
-                string data = await content.ReadAsStringAsync();
-                if (data != null)
-                {
-                    newT = JsonConvert.DeserializeObject<T>(data);
-                    return newT;
-                }
-            }
-            Object o = new Object();
-            return (T)o;
+            SetupHeaders(_client);
+            using HttpResponseMessage response = await _client.DeleteAsync(url);
+            using HttpContent content = response.Content;
+            string data = await content.ReadAsStringAsync();
+            newT = JsonConvert.DeserializeObject<T>(data);
+            return newT;
         }
         #endregion
+
+        protected void SetupHeaders(HttpClient client)
+        {
+            client.DefaultRequestHeaders.Clear();
+
+            client.DefaultRequestHeaders.Accept.Add
+                (new MediaTypeWithQualityHeaderValue
+                (mediaType));
+        }
     }
 }
