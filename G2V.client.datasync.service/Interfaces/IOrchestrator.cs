@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace G2V.client.datasync.service.Interfaces
 {
-    internal interface ITcpTask
+    internal interface IOrchestrator
     {
-        public Task<TcpClient> StartAsync(ILogger<ITcpContext> logger, IPAddress ip, int port);
+        public Task<TcpClient> StartAsync(ILogger<IOrchestrationContext> logger, IPAddress ip, int port);
         public void Stop();
     }
 }
