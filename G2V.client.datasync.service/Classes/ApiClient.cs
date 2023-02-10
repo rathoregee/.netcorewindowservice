@@ -37,40 +37,35 @@ namespace G2V.client.datasync.service.Classes
         }
 
         public async Task<T> PostAsync<T>(string url, HttpContent contentPost)
-        {
-            T data;
+        {            
             _client = _factory.CreateClient(_clientName);
             SetupHeaders(_client);
             using HttpResponseMessage response = await _client.PostAsync(url, contentPost);
             using HttpContent content = response.Content;
-            string d = await content.ReadAsStringAsync();
-            data = JsonConvert.DeserializeObject<T>(d);
+            string data = await content.ReadAsStringAsync();            
             var result = JsonConvert.DeserializeObject<T>(data);
             return result != null ? result : (T)new Object();
         }
 
         public async Task<T> PutAsync<T>(string url, HttpContent contentPut)
-        {
-            T data;
+        {            
             _client = _factory.CreateClient(_clientName);
             SetupHeaders(_client);
             using HttpResponseMessage response = await _client.PutAsync(url, contentPut);
             using HttpContent content = response.Content;
-            string d = await content.ReadAsStringAsync();
-            data = JsonConvert.DeserializeObject<T>(d);
+            string data = await content.ReadAsStringAsync();         
             var result = JsonConvert.DeserializeObject<T>(data);
             return result != null ? result : (T)new Object();
         }
 
         public async Task<T> DeleteAsync<T>(string url)
         {
-            T newT;
+            
             _client = _factory.CreateClient(_clientName);
             SetupHeaders(_client);
             using HttpResponseMessage response = await _client.DeleteAsync(url);
             using HttpContent content = response.Content;
-            string data = await content.ReadAsStringAsync();
-            newT = JsonConvert.DeserializeObject<T>(data);
+            string data = await content.ReadAsStringAsync();           ;
             var result = JsonConvert.DeserializeObject<T>(data);
             return result != null ? result : (T)new Object();
         }
