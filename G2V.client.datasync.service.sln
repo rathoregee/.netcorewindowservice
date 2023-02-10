@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "G2V.client.datasync.service", "G2V.client.datasync.service\G2V.client.datasync.service.csproj", "{CCD7B67F-D830-4FC4-BB68-916576508E8C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "G2V.client.datasync.service.tests", "G2V.client.datasync.service.tests\G2V.client.datasync.service.tests.csproj", "{B91F6541-056D-4A74-8CFA-C492704D907D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CCD7B67F-D830-4FC4-BB68-916576508E8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCD7B67F-D830-4FC4-BB68-916576508E8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCD7B67F-D830-4FC4-BB68-916576508E8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCD7B67F-D830-4FC4-BB68-916576508E8C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B91F6541-056D-4A74-8CFA-C492704D907D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B91F6541-056D-4A74-8CFA-C492704D907D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B91F6541-056D-4A74-8CFA-C492704D907D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B91F6541-056D-4A74-8CFA-C492704D907D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {63DB1AE3-FB4F-4359-874E-39E1FE3200FF}
+	EndGlobalSection
+EndGlobal
