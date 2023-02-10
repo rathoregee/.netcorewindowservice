@@ -1,4 +1,4 @@
-namespace EG2V.client.datasync.service.Results
+namespace G2V.client.datasync.service.Models
 {
     public class ErrorPayload
     {

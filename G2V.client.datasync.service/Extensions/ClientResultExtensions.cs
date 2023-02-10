@@ -1,8 +1,11 @@
+using G2V.client.datasync.service.Classes;
+using G2V.client.datasync.service.Enums;
+using G2V.client.datasync.service.Interfaces;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace EG2V.client.datasync.service.Results
+namespace G2V.client.datasync.service.Extensions
 {
     public static class ClientResultExtensions
     {

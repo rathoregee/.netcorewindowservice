@@ -1,4 +1,6 @@
-namespace EG2V.client.datasync.service.Results
+using G2V.client.datasync.service.Enums;
+
+namespace G2V.client.datasync.service.Interfaces
 {
     public interface IServiceResult
     {        

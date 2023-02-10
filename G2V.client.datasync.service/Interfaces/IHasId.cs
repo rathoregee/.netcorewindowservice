@@ -1,11 +1,10 @@
 using System;
 
-namespace EG2V.client.datasync.service.Results
+namespace G2V.client.datasync.service.Interfaces
 {
     public interface IHasId : IHasId<Guid>
     {
     }
-
     public interface IHasId<TId>
     {
         TId Id { get; }

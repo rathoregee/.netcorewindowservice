@@ -1,4 +1,8 @@
-namespace EG2V.client.datasync.service.Results
+using G2V.client.datasync.service.Enums;
+using G2V.client.datasync.service.Interfaces;
+using G2V.client.datasync.service.Models;
+
+namespace G2V.client.datasync.service.Classes
 {
 
     public static class ServiceResult
