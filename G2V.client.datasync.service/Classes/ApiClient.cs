@@ -59,8 +59,7 @@ namespace G2V.client.datasync.service.Classes
         }
 
         public async Task<T> DeleteAsync<T>(string url)
-        {
-            
+        {            
             _client = _factory.CreateClient(_clientName);
             SetupHeaders(_client);
             using HttpResponseMessage response = await _client.DeleteAsync(url);
