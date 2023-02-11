@@ -5,6 +5,12 @@ using G2V.client.datasync.service.Classes;
 using G2V.client.datasync.service.Interfaces;
 using Serilog;
 
+var configuration = new ConfigurationBuilder()
+              .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+              .AddEnvironmentVariables()
+              .AddCommandLine(args)
+              .Build();
+
 await new HostBuilder()
             .UseServiceProviderFactory(new AutofacServiceProviderFactory())
             .ConfigureServices((hostContext, services) =>
@@ -12,10 +18,11 @@ await new HostBuilder()
                 services.AddHostedService<Worker>();
             })
             .ConfigureContainer<ContainerBuilder>(builder =>
-            {
+            {               
                 // registering services in the Autofac ContainerBuilder   
                 builder.RegisterType<OrchestrationContext>().As<IOrchestrationContext>().InstancePerLifetimeScope();
                 builder.RegisterType<Repository>().As<IRepository>().InstancePerLifetimeScope();
+                builder.RegisterInstance(configuration).As<IConfiguration>();
                 builder.Register<IHttpClientFactory>(_ =>
                 {
                     var services = new ServiceCollection();
@@ -29,9 +36,6 @@ await new HostBuilder()
             .ConfigureLogging(
                     loggingBuilder =>
                     {
-                        var configuration = new ConfigurationBuilder()
-                            .AddJsonFile("appsettings.json")
-                            .Build();
                         var logger = new LoggerConfiguration()
                             .ReadFrom.Configuration(configuration)
                             .WriteTo.Console()

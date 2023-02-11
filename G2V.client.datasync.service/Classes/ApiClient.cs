@@ -22,7 +22,7 @@ namespace G2V.client.datasync.service.Classes
         {
             _factory = factory;
             _config = config;
-            _baseUrl = config["SERVICE_URL"];
+            _baseUrl = config.GetValue<string>("SERVICE_URL");
         }
 
         #region Generic, Async, static HTTP functions for GET, POST, PUT, and DELETE
