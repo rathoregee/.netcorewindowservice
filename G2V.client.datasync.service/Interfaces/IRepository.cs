@@ -1,4 +1,5 @@
-﻿using System;
+﻿using G2V.client.datasync.service.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -9,6 +10,6 @@ namespace G2V.client.datasync.service.Interfaces
 {
     public interface IRepository
     {
-        public Task<IClientResult<string>> GetAsync(int id);
+        public Task<IClientResult<IdNameDto>> GetAsync(int id);
     }
 }

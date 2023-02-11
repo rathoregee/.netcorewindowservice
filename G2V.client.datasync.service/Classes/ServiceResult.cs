@@ -4,7 +4,6 @@ using G2V.client.datasync.service.Models;
 
 namespace G2V.client.datasync.service.Classes
 {
-
     public static class ServiceResult
     {
         private class ServiceResultInternal<T> : IServiceResult<T>

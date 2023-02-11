@@ -25,3 +25,13 @@ Newtonsoft.Json.JsonReaderException: Unexpected character encountered while pars
    at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
    at G2V.client.datasync.service.Classes.ApiClient.GetAsync[T](String url) in C:\Users\ratho\OneDrive\Desktop\G2V\Github\.netcorewindowservice\G2V.client.datasync.service\Classes\ApiClient.cs:line 36
    at G2V.client.datasync.service.Classes.Repository.GetAsync(Int32 id) in C:\Users\ratho\OneDrive\Desktop\G2V\Github\.netcorewindowservice\G2V.client.datasync.service\Classes\Repository.cs:line 23
+2023-02-10 23:52:34.129 -07:00 [INF] Worker 10/02/2023 23:52:34 is starting.
+2023-02-10 23:52:41.746 -07:00 [INF] Hearbeat running at: "2023-02-10T23:52:41.7456854-07:00"
+2023-02-10 23:52:41.753 -07:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-02-10 23:52:41.753 -07:00 [INF] Hosting environment: Production
+2023-02-10 23:52:41.754 -07:00 [INF] Content root path: C:\Users\ratho\OneDrive\Desktop\G2V\Github\.netcorewindowservice\G2V.client.datasync.service\bin\Debug\net6.0\
+2023-02-10 23:52:52.954 -07:00 [INF] Hearbeat running at: "2023-02-10T23:52:52.9490474-07:00"
+2023-02-10 23:52:58.223 -07:00 [INF] Hearbeat running at: "2023-02-10T23:52:58.2238757-07:00"
+2023-02-10 23:53:04.750 -07:00 [INF] Hearbeat running at: "2023-02-10T23:53:04.7504293-07:00"
+2023-02-10 23:53:09.775 -07:00 [INF] Hearbeat running at: "2023-02-10T23:53:09.7758214-07:00"
+2023-02-10 23:53:14.793 -07:00 [INF] Hearbeat running at: "2023-02-10T23:53:14.7935400-07:00"

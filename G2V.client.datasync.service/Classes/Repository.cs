@@ -1,4 +1,5 @@
 ﻿using G2V.client.datasync.service.Interfaces;
+using G2V.client.datasync.service.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,11 +17,11 @@ namespace G2V.client.datasync.service.Classes
             _api = api;
             _logger = logger;
         }
-        public async Task<IClientResult<string>> GetAsync(int id)
+        public async Task<IClientResult<IdNameDto>> GetAsync(int id)
         {
             try
             {
-                var result = await _api.GetAsync<string>("/TEST");
+                var result = await _api.GetAsync<IdNameDto>("/TEST");
 
                 return ClientResult.Success(result);
             }
@@ -28,7 +29,7 @@ namespace G2V.client.datasync.service.Classes
             {
                 _logger.LogError(ex, "logging exception details at GetAsync");
 
-                return ClientResult.ServiceUnavailable<string>();
+                return ClientResult.ServiceUnavailable<IdNameDto>();
             }
         }
     }
