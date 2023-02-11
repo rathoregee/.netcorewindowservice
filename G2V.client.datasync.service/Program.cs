@@ -14,9 +14,16 @@ await new HostBuilder()
             .ConfigureContainer<ContainerBuilder>(builder =>
             {
                 // registering services in the Autofac ContainerBuilder   
-                builder.RegisterType<OrchestrationContext>().As<IOrchestrationContext>();
-                builder.RegisterType<Repository>().As<IRepository>();
-                builder.RegisterType<ApiClient>().As<IApiClient>();
+                builder.RegisterType<OrchestrationContext>().As<IOrchestrationContext>().InstancePerLifetimeScope();
+                builder.RegisterType<Repository>().As<IRepository>().InstancePerLifetimeScope();
+                builder.Register<IHttpClientFactory>(_ =>
+                {
+                    var services = new ServiceCollection();
+                    services.AddHttpClient();
+                    var provider = services.BuildServiceProvider();
+                    return provider.GetRequiredService<IHttpClientFactory>();
+                });
+                builder.RegisterType<ApiClient>().As<IApiClient>().InstancePerLifetimeScope();
 
             })
             .ConfigureLogging(

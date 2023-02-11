@@ -14,15 +14,14 @@ namespace G2V.client.datasync.service.Classes
         private IHttpClientFactory _factory;
         private HttpClient? _client = null;
         private IConfiguration? _config = null;
-        private string _clientName;
+        private string _clientName = "httpclient";
         private string _baseUrl;
         private const string mediaType = "application/json";
 
-        public ApiClient(IConfiguration config, IHttpClientFactory factory, string clientName)
+        public ApiClient(IConfiguration config, IHttpClientFactory factory)
         {
             _factory = factory;
             _config = config;
-            _clientName = clientName;
             _baseUrl = config["SERVICE_URL"];
         }
 
@@ -39,34 +38,34 @@ namespace G2V.client.datasync.service.Classes
         }
 
         public async Task<T> PostAsync<T>(string url, HttpContent contentPost)
-        {            
+        {
             _client = _factory.CreateClient(_clientName);
             SetupHeaders(_client);
             using HttpResponseMessage response = await _client.PostAsync($"{_baseUrl}/{url}", contentPost);
             using HttpContent content = response.Content;
-            string data = await content.ReadAsStringAsync();            
+            string data = await content.ReadAsStringAsync();
             var result = JsonConvert.DeserializeObject<T>(data);
             return result != null ? result : (T)new Object();
         }
 
         public async Task<T> PutAsync<T>(string url, HttpContent contentPut)
-        {            
+        {
             _client = _factory.CreateClient(_clientName);
             SetupHeaders(_client);
             using HttpResponseMessage response = await _client.PutAsync($"{_baseUrl}/{url}", contentPut);
             using HttpContent content = response.Content;
-            string data = await content.ReadAsStringAsync();         
+            string data = await content.ReadAsStringAsync();
             var result = JsonConvert.DeserializeObject<T>(data);
             return result != null ? result : (T)new Object();
         }
 
         public async Task<T> DeleteAsync<T>(string url)
-        {            
+        {
             _client = _factory.CreateClient(_clientName);
             SetupHeaders(_client);
             using HttpResponseMessage response = await _client.DeleteAsync($"{_baseUrl}/{url}");
             using HttpContent content = response.Content;
-            string data = await content.ReadAsStringAsync();           ;
+            string data = await content.ReadAsStringAsync(); ;
             var result = JsonConvert.DeserializeObject<T>(data);
             return result != null ? result : (T)new Object();
         }
