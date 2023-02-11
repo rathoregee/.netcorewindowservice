@@ -15,6 +15,7 @@ namespace G2V.client.datasync.service.Classes
         private HttpClient? _client = null;
         private IConfiguration? _config = null;
         private string _clientName;
+        private string _baseUrl;
         private const string mediaType = "application/json";
 
         public ApiClient(IConfiguration config, IHttpClientFactory factory, string clientName)
@@ -22,6 +23,7 @@ namespace G2V.client.datasync.service.Classes
             _factory = factory;
             _config = config;
             _clientName = clientName;
+            _baseUrl = config["SERVICE_URL"];
         }
 
         #region Generic, Async, static HTTP functions for GET, POST, PUT, and DELETE
@@ -29,7 +31,7 @@ namespace G2V.client.datasync.service.Classes
         {
             _client = _factory.CreateClient(_clientName);
             SetupHeaders(_client);
-            using HttpResponseMessage response = await _client.GetAsync(url);
+            using HttpResponseMessage response = await _client.GetAsync($"{_baseUrl}/{url}");
             using HttpContent content = response.Content;
             string data = await content.ReadAsStringAsync();
             var result = JsonConvert.DeserializeObject<T>(data);
@@ -40,7 +42,7 @@ namespace G2V.client.datasync.service.Classes
         {            
             _client = _factory.CreateClient(_clientName);
             SetupHeaders(_client);
-            using HttpResponseMessage response = await _client.PostAsync(url, contentPost);
+            using HttpResponseMessage response = await _client.PostAsync($"{_baseUrl}/{url}", contentPost);
             using HttpContent content = response.Content;
             string data = await content.ReadAsStringAsync();            
             var result = JsonConvert.DeserializeObject<T>(data);
@@ -51,7 +53,7 @@ namespace G2V.client.datasync.service.Classes
         {            
             _client = _factory.CreateClient(_clientName);
             SetupHeaders(_client);
-            using HttpResponseMessage response = await _client.PutAsync(url, contentPut);
+            using HttpResponseMessage response = await _client.PutAsync($"{_baseUrl}/{url}", contentPut);
             using HttpContent content = response.Content;
             string data = await content.ReadAsStringAsync();         
             var result = JsonConvert.DeserializeObject<T>(data);
@@ -62,7 +64,7 @@ namespace G2V.client.datasync.service.Classes
         {            
             _client = _factory.CreateClient(_clientName);
             SetupHeaders(_client);
-            using HttpResponseMessage response = await _client.DeleteAsync(url);
+            using HttpResponseMessage response = await _client.DeleteAsync($"{_baseUrl}/{url}");
             using HttpContent content = response.Content;
             string data = await content.ReadAsStringAsync();           ;
             var result = JsonConvert.DeserializeObject<T>(data);

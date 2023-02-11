@@ -20,7 +20,7 @@ namespace G2V.client.datasync.service.Classes
         {
             try
             {
-                var result = await _api.GetAsync<string>("");
+                var result = await _api.GetAsync<string>("/TEST");
 
                 return ClientResult.Success(result);
             }
