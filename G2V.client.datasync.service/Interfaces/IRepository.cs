@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace G2V.client.datasync.service.Interfaces
 {
-    internal interface IRepository
+    public interface IRepository
     {
         public Task<IClientResult<string>> GetAsync(int id);
     }

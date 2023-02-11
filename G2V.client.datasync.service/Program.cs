@@ -1,6 +1,8 @@
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using G2V.client.datasync.service;
+using G2V.client.datasync.service.Classes;
+using G2V.client.datasync.service.Interfaces;
 using Serilog;
 
 await new HostBuilder()
@@ -12,8 +14,9 @@ await new HostBuilder()
             .ConfigureContainer<ContainerBuilder>(builder =>
             {
                 // registering services in the Autofac ContainerBuilder   
-                builder.RegisterType<SMSService>().As<IMobileServive>();
-
+                builder.RegisterType<OrchestrationContext>().As<IOrchestrationContext>();
+                builder.RegisterType<Repository>().As<IRepository>();
+                builder.RegisterType<ApiClient>().As<IApiClient>();
 
             })
             .ConfigureLogging(

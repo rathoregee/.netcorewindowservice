@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace G2V.client.datasync.service.Interfaces
 {
-    internal interface IOrchestrationContext
+    public interface IOrchestrationContext
     {        
         public Task StartAsync(ILogger<IOrchestrationContext> logger, IRepository repository);
         public void Stop();

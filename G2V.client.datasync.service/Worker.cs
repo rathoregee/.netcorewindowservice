@@ -1,19 +1,23 @@
+using G2V.client.datasync.service.Interfaces;
+
 namespace G2V.client.datasync.service
 {
     public class Worker : BackgroundService
     {
-        private readonly ILogger<Worker> _logger;
-        private readonly IMobileServive _svc;
+        private readonly ILogger<IOrchestrationContext> _logger;
+        private readonly IOrchestrationContext _context;
+        private readonly IRepository _repository;
 
-        public Worker(ILogger<Worker> logger, IMobileServive svc)
+        public Worker(ILogger<IOrchestrationContext> logger, IOrchestrationContext context, IRepository repository)
         {
             _logger = logger;
-            _svc = svc;
+            _context = context;
+            _repository = repository;
         }
         public override Task StartAsync(CancellationToken cancellationToken)
         {
             _logger.LogInformation($"{nameof(Worker)} {DateTime.Now} is starting.");
-            _svc.Execute();
+            _context.StartAsync(_logger, _repository);
             return base.StartAsync(cancellationToken);
         }
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -29,18 +33,6 @@ namespace G2V.client.datasync.service
         {
             _logger.LogInformation($"{nameof(Worker)} is stopping.");
             await base.StopAsync(stoppingToken);
-        }
-    }
-
-    public interface IMobileServive
-    {
-        void Execute();
-    }
-    public class SMSService : IMobileServive
-    {
-        public void Execute()
-        {
-            Console.WriteLine("SMS service executing.");
         }
     }
 }
