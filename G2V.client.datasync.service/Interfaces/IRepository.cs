@@ -9,6 +9,6 @@ namespace G2V.client.datasync.service.Interfaces
 {
     internal interface IRepository
     {
-        public Task<Dictionary<IPAddress,int>> GetIpListAsync();
+        public Task<IClientResult<string>> GetAsync(int id);
     }
 }

@@ -8,7 +8,7 @@ namespace G2V.client.datasync.service.Interfaces
 {
     internal interface IOrchestrationContext
     {        
-        public Task<List<object>> StartAsync(ILogger<IOrchestrationContext> logger, IRepository repository);
+        public Task StartAsync(ILogger<IOrchestrationContext> logger, IRepository repository);
         public void Stop();
     }
 }
