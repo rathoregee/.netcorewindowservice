@@ -33,8 +33,8 @@ namespace G2V.client.datasync.service.Classes
             using HttpResponseMessage response = await _client.GetAsync($"{_baseUrl}/{url}");
             using HttpContent content = response.Content;
             string data = await content.ReadAsStringAsync();
-            var result = JsonConvert.DeserializeObject<T>(data);
-            return result != null ? result : (T)new Object();
+            var result = JsonConvert.DeserializeObject<T>(data);                       
+            return result;
         }
 
         public async Task<T> PostAsync<T>(string url, HttpContent contentPost)
@@ -45,7 +45,7 @@ namespace G2V.client.datasync.service.Classes
             using HttpContent content = response.Content;
             string data = await content.ReadAsStringAsync();
             var result = JsonConvert.DeserializeObject<T>(data);
-            return result != null ? result : (T)new Object();
+            return result;
         }
 
         public async Task<T> PutAsync<T>(string url, HttpContent contentPut)
@@ -56,7 +56,7 @@ namespace G2V.client.datasync.service.Classes
             using HttpContent content = response.Content;
             string data = await content.ReadAsStringAsync();
             var result = JsonConvert.DeserializeObject<T>(data);
-            return result != null ? result : (T)new Object();
+            return result;
         }
 
         public async Task<T> DeleteAsync<T>(string url)
@@ -67,7 +67,7 @@ namespace G2V.client.datasync.service.Classes
             using HttpContent content = response.Content;
             string data = await content.ReadAsStringAsync(); ;
             var result = JsonConvert.DeserializeObject<T>(data);
-            return result != null ? result : (T)new Object();
+            return result;
         }
         #endregion
 
