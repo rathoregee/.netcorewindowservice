@@ -52,7 +52,25 @@ namespace G2V.client.datasync.service.tests.Unit
             _factory.Setup(_ => _.CreateClient(It.IsAny<string>())).Returns(httpClient);
         }
 
-        public void SetupExSetUpException()
+        public void SetupGetAysnc_Null<T>()
+        {
+            var mockMessageHandler = new Mock<HttpMessageHandler>();
+            mockMessageHandler.Protected()
+                .Setup<Task<HttpResponseMessage>>("SendAsync",
+                ItExpr.IsAny<HttpRequestMessage>(),
+                ItExpr.IsAny<CancellationToken>())
+                .ReturnsAsync(new HttpResponseMessage
+                {
+                    StatusCode = HttpStatusCode.OK,
+                    Content = new StringContent(JsonConvert.SerializeObject(null))
+                });
+
+            var httpClient = new HttpClient(mockMessageHandler.Object);
+
+            _factory.Setup(_ => _.CreateClient(It.IsAny<string>())).Returns(httpClient);
+        }
+
+        public void SetUpException()
         {
             var mockMessageHandler = new Mock<HttpMessageHandler>();
             mockMessageHandler.Protected()

@@ -25,7 +25,7 @@ namespace G2V.client.datasync.service.Classes
 
                 if (result == null)
                 {
-                    ClientResult.NotFound<IdNameDto>();
+                   return ClientResult.NotFound<IdNameDto>();
                 }
 
                 return ClientResult.Success<IdNameDto>(result);
