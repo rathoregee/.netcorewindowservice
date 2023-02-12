@@ -26,15 +26,15 @@ namespace G2V.client.datasync.service.tests.Unit
         }
 
         [Fact]
-        public async Task ApiClientTests_GetAsync()
+        public async Task ApiClientTests_GetAsync_OK()
         {
-            var data = _fixture.Create<IdNameDto>();
-            _mock.SetupGetAysnc<IdNameDto>(data);
+            var Expected = _fixture.Create<IdNameDto>();
+            _mock.SetupGetAysnc(Expected);
             _sut = new ApiClient(_mock.Configuration, _mock.HttpClientFactory);     
-            var response =  await _sut.GetAsync<IdNameDto>("/Test");
-            
-            Assert.NotNull(response);
-
+            var actual =  await _sut.GetAsync<IdNameDto>("/Test");        
+            Assert.NotNull(actual);
+            Assert.Equal(Expected.Id, actual.Id);
+            Assert.Equal(Expected.Name, actual.Name);
         }
     }
 }

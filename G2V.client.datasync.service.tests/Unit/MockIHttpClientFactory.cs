@@ -16,9 +16,8 @@ namespace G2V.client.datasync.service.tests.Unit
     public class MockIHttpClientFactory
     {
         private readonly Mock<IHttpClientFactory> _factory = new();
-        private readonly Mock<IConfiguration> _mockConfig = new();
         public IHttpClientFactory HttpClientFactory => _factory.Object;
-        public IConfiguration Configuration => _mockConfig.Object;
+        public IConfiguration Configuration;
         public const string SERVICE_URL = "http://yahoo.com";
         public MockIHttpClientFactory()
         {
@@ -27,7 +26,14 @@ namespace G2V.client.datasync.service.tests.Unit
 
         private void SetupConifguration()
         {
-            _mockConfig.SetupGet(x => x[It.Is<string>(s => s == "SERVICE_URL")]).Returns(SERVICE_URL);
+            var appSettingsStub = new Dictionary<string, string> {
+                {"Services:SomeService:RetryCount", "3"},
+                {"SERVICE_URL", SERVICE_URL}
+            };
+
+            Configuration = new ConfigurationBuilder()
+                .AddInMemoryCollection(appSettingsStub)
+                .Build();
         }
 
         public void SetupGetAysnc<T>(T data)
