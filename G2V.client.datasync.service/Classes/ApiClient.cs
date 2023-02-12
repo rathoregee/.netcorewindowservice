@@ -13,7 +13,7 @@ namespace G2V.client.datasync.service.Classes
     {
         private IHttpClientFactory _factory;
         private HttpClient? _client = null;
-        private IConfiguration? _config = null;
+        private readonly IConfiguration? _config = null;
         private readonly string _clientName = "httpclient";
         private readonly string _baseUrl;
         private const string mediaType = "application/json";
