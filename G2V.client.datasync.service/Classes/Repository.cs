@@ -23,7 +23,12 @@ namespace G2V.client.datasync.service.Classes
             {
                 var result = await _api.GetAsync<IdNameDto>("/TEST");
 
-                return ClientResult.Success(result);
+                if (result == null)
+                {
+                    ClientResult.NotFound<IdNameDto>();
+                }
+
+                return ClientResult.Success<IdNameDto>(result);
             }
             catch (Exception ex)
             {
