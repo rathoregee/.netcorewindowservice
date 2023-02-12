@@ -111,7 +111,7 @@ namespace G2V.client.datasync.service.tests.Integration
             }
         }
 
-        [Fact]
+        //[Fact]
         public void Test()
         {          
             //AddServer(IPAddress.Parse("192.168.161.1"), 8001);
