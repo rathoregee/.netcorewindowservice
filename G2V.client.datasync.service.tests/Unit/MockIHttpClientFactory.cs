@@ -1,4 +1,5 @@
-﻿using Moq;
+﻿using Microsoft.Extensions.Configuration;
+using Moq;
 using Moq.Protected;
 using Newtonsoft.Json;
 using System;
@@ -15,7 +16,19 @@ namespace G2V.client.datasync.service.tests.Unit
     public class MockIHttpClientFactory
     {
         private readonly Mock<IHttpClientFactory> _factory = new();
+        private readonly Mock<IConfiguration> _mockConfig = new();
         public IHttpClientFactory HttpClientFactory => _factory.Object;
+        public IConfiguration Configuration => _mockConfig.Object;
+        public const string SERVICE_URL = "http://yahoo.com";
+        public MockIHttpClientFactory()
+        {
+            SetupConifguration();
+        }
+
+        private void SetupConifguration()
+        {
+            _mockConfig.SetupGet(x => x[It.Is<string>(s => s == "SERVICE_URL")]).Returns(SERVICE_URL);
+        }
 
         public void SetupGetAysnc<T>(T data)
         {
