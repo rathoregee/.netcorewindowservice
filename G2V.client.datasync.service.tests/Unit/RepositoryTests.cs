@@ -24,21 +24,24 @@ namespace G2V.client.datasync.service.tests.Unit
         }
         public void Dispose()
         {
-            
+            //:TODO
         }
 
         [Fact]
         public async Task RepositoryTests_GetAsync_OK()
         {
-            var Expected = _fixture.Create<IdNameDto>();
-            _mock.SetupGetAysnc(Expected);
+            //Given
+            var expected = _fixture.Create<IdNameDto>();
+            _mock.SetupGetAysnc(expected);
             _client = new ApiClient(_mock.Configuration, _mock.HttpClientFactory);
             _sut = new Repository(_client, _loggger.Object);
-            var actual =  await _sut.GetAsync(1);        
+            //When
+            var actual =  await _sut.GetAsync(1);
+            //Then
             Assert.NotNull(actual);
             Assert.Equal(ClientResultStatus.Success, actual.Status);
-            Assert.Equal(Expected.Id, actual.Payload.Id);
-            Assert.Equal(Expected.Name, actual.Payload.Name);
+            Assert.Equal(expected.Id, actual.Payload.Id);
+            Assert.Equal(expected.Name, actual.Payload.Name);
         }
     }
 }
