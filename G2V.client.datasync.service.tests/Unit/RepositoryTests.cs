@@ -55,7 +55,22 @@ namespace G2V.client.datasync.service.tests.Unit
             var actual = await _sut.GetAsync(1);
             //Then
             Assert.NotNull(actual);
-            Assert.Equal(ClientResultStatus.NotFound, actual.Status);           
+            Assert.Equal(ClientResultStatus.NotFound, actual.Status);
+        }
+
+
+        [Fact]
+        public async Task RepositoryTests_GetAsync_Exception()
+        {
+            //Given           
+            _mock.SetUpException();
+            _client = new ApiClient(_mock.Configuration, _mock.HttpClientFactory);
+            _sut = new Repository(_client, _loggger.Object);
+            //When
+            var actual = await _sut.GetAsync(1);
+            //Then
+            Assert.NotNull(actual);
+            Assert.Equal(ClientResultStatus.ServiceUnavailable, actual.Status);
         }
     }
 }
