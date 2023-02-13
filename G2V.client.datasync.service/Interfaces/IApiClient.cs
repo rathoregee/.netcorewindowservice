@@ -1,6 +1,5 @@
 ﻿
 namespace G2V.client.datasync.service.Interfaces
-
 {
     public interface IApiClient
     {
