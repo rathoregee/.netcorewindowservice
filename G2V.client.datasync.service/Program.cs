@@ -10,19 +10,12 @@ var configuration = new ConfigurationBuilder()
               .AddEnvironmentVariables()
               .AddCommandLine(args)
               .Build();
-#if DEBUG
+
 var logger = new LoggerConfiguration()
                 .ReadFrom.Configuration(configuration)
                 .MinimumLevel.Information()
                 .WriteTo.Console()
                 .CreateLogger();
-#else
-var logger = new LoggerConfiguration()
-                .ReadFrom.Configuration(configuration)
-                .MinimumLevel.Fatal()
-                .WriteTo.Console()
-                .CreateLogger();
-#endif
 
 await new HostBuilder()
             .UseServiceProviderFactory(new AutofacServiceProviderFactory())
