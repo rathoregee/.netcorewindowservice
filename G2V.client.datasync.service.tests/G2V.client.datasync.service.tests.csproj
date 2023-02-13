@@ -28,4 +28,8 @@
     <ProjectReference Include="..\G2V.client.datasync.service\G2V.client.datasync.service.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Integration\" />
+  </ItemGroup>
+
 </Project>

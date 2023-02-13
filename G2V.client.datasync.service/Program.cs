@@ -12,9 +12,9 @@ var configuration = new ConfigurationBuilder()
               .Build();
 
 var logger = new LoggerConfiguration()
-                            .ReadFrom.Configuration(configuration)
-                            .WriteTo.Console()
-                            .CreateLogger();
+                .ReadFrom.Configuration(configuration)
+                .WriteTo.Console()
+                .CreateLogger();
 
 await new HostBuilder()
             .UseServiceProviderFactory(new AutofacServiceProviderFactory())
