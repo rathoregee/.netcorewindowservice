@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace G2V.client.datasync.service.Classes
 {
-    internal class OrchestrationContext : IOrchestrationContext
+    public class OrchestrationContext : IOrchestrationContext
     {
         public async Task StartAsync(ILogger<IOrchestrationContext> logger, IRepository repository)
         {
