@@ -1,9 +1,6 @@
 using G2V.client.datasync.service.Classes;
 using G2V.client.datasync.service.Enums;
 using G2V.client.datasync.service.Interfaces;
-using System;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace G2V.client.datasync.service.Extensions
 {
@@ -13,7 +10,6 @@ namespace G2V.client.datasync.service.Extensions
         {
             return AsServiceResult(clientResult, clientResult.Payload);
         }
-
         public static IServiceResult<TOutput> AsServiceResult<TInput, TOutput>(this IClientResult<TInput> clientResult, TOutput payload)
         {
             switch (clientResult.Status)
