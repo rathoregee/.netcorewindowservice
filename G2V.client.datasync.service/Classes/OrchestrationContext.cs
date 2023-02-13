@@ -22,7 +22,7 @@ namespace G2V.client.datasync.service.Classes
 
         public void Stop()
         {
-            
+            throw new NotSupportedException();
         }
     }
 }
