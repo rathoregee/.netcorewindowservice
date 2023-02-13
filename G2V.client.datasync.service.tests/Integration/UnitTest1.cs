@@ -113,14 +113,10 @@ namespace G2V.client.datasync.service.tests.Integration
 
         //[Fact]
         public void Test()
-        {          
-            //AddServer(IPAddress.Parse("192.168.161.1"), 8001);
-            Add();
-            // AddServer(IPAddress.Parse("192.168.161.1"), 8002);
+        {                     
+            Add();          
             Thread.Sleep(15000);
             AddCient(IPAddress.Parse("192.168.161.1"), 8001,"Client one data");
-
-
         }
     }
 }

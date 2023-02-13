@@ -11,7 +11,7 @@ using Xunit;
 
 namespace G2V.client.datasync.service.tests.Unit
 {
-    public class RepositoryTests : IDisposable
+    public class RepositoryTests
     {
         private readonly MockIHttpClientFactory _mock;
         private readonly Mock<ILogger<Repository>> _loggger = new();
@@ -22,11 +22,7 @@ namespace G2V.client.datasync.service.tests.Unit
         {
             _mock = new();            
         }
-        public void Dispose()
-        {
-            //:TODO
-        }
-
+       
         [Fact]
         public async Task RepositoryTests_GetAsync_OK()
         {

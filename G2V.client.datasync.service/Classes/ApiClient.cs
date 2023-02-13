@@ -11,8 +11,8 @@ namespace G2V.client.datasync.service.Classes
 {
     public class ApiClient : IApiClient
     {
-        private IHttpClientFactory _factory;
-        private HttpClient? _client = null;
+        private readonly IHttpClientFactory _factory;
+        private HttpClient? _client;
         private readonly IConfiguration? _config = null;
         private readonly string _clientName = "httpclient";
         private readonly string _baseUrl;

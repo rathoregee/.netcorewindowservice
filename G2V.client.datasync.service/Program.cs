@@ -11,6 +11,11 @@ var configuration = new ConfigurationBuilder()
               .AddCommandLine(args)
               .Build();
 
+var logger = new LoggerConfiguration()
+                            .ReadFrom.Configuration(configuration)
+                            .WriteTo.Console()
+                            .CreateLogger();
+
 await new HostBuilder()
             .UseServiceProviderFactory(new AutofacServiceProviderFactory())
             .ConfigureServices((hostContext, services) =>
@@ -35,11 +40,7 @@ await new HostBuilder()
             })
             .ConfigureLogging(
                     loggingBuilder =>
-                    {
-                        var logger = new LoggerConfiguration()
-                            .ReadFrom.Configuration(configuration)
-                            .WriteTo.Console()
-                            .CreateLogger();
+                    {                        
                         loggingBuilder.AddSerilog(logger, dispose: true);
                     }
                 )
