@@ -9,7 +9,7 @@ namespace G2V.client.datasync.service.Interfaces
         string[] Errors { get; }
     }
 
-    public interface IServiceResult<T> : IServiceResult
+    public interface IServiceResult<out T> : IServiceResult
     {
         T Payload { get; }
     }
