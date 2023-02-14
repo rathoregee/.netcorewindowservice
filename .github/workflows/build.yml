@@ -42,18 +42,9 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         shell: powershell
         run: |
-          .\.sonar\scanner\dotnet-sonarscanner begin /k:"rathoregee_.netcorewindowservice" /o:"rathoregee" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
-          dotnet build ./G2V.client.datasync.service/G2V.client.datasync.service.csproj  --configuration Release
+          dotnet tool install --global dotnet-coverage
+          [jdk setup]
+          .\.sonar\scanner\dotnet-sonarscanner begin /k:"rathoregee_.netcorewindowservice" /o:"rathoregee" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml
+          dotnet build --configuration Release
+          dotnet-coverage collect 'dotnet test' -f xml -o 'coverage.xml'        
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
-      - name: Install Required Tools
-        run: |
-          dotnet new tool-manifest
-          dotnet tool install dotnet-reportgenerator-globaltool
-          dotnet tool install dotnet-coverage
-          
-      - name: Run the unit tests with code coverage
-        run: dotnet coverage collect dotnet test --output ${{ github.workspace }}/Tests/Coverage --output-format cobertura
-
-      - name: Generate Report
-        run: |
-          dotnet reportgenerator -reports:${{ github.workspace }}/Tests/Coverage.cobertura.xml -targetdir:"${{ github.workspace }}/Tests/coveragereport" -reporttypes:Html -assemblyfilters:+MinimalApi
