@@ -45,14 +45,7 @@ jobs:
           dotnet tool install --global dotnet-coverage
           .\.sonar\scanner\dotnet-sonarscanner begin /k:"rathoregee_.netcorewindowservice" /o:"rathoregee" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
           dotnet build ./G2V.client.datasync.service/G2V.client.datasync.service.csproj  --configuration Release
-          dotnet test "./G2V.client.datasync.service.tests/G2V.client.datasync.service.tests.csproj"
-          --collect:"XPlat Code Coverage" `           # cross platform code coverage
-          --results-directory TestResults/ `          # Test Result directory
-          --logger "trx;LogFileName=unittests.trx" `  # Use standard trx format for logger output
-          --no-build `
-          --no-restore `
-          --configuration release `
-          -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover 
-
-         
+          dotnet test "./G2V.client.datasync.service.tests/G2V.client.datasync.service.tests.csproj" /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput="/coverage" 
+          --logger "trx;LogFileName=/result.trx"
+          --configuration release                
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
