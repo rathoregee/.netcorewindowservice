@@ -13,8 +13,8 @@ var configuration = new ConfigurationBuilder()
 
 var logger = new LoggerConfiguration()
                 .ReadFrom.Configuration(configuration)
-                .MinimumLevel.Information()
                 .WriteTo.Console()
+                .Enrich.WithCorrelationId()
                 .CreateLogger();
 
 await new HostBuilder()
@@ -24,7 +24,7 @@ await new HostBuilder()
                 services.AddHostedService<Worker>();
             })
             .ConfigureContainer<ContainerBuilder>(builder =>
-            {               
+            {
                 // registering services in the Autofac ContainerBuilder   
                 builder.RegisterType<OrchestrationContext>().As<IOrchestrationContext>().InstancePerLifetimeScope();
                 builder.RegisterType<Repository>().As<IRepository>().InstancePerLifetimeScope();
@@ -41,7 +41,7 @@ await new HostBuilder()
             })
             .ConfigureLogging(
                     loggingBuilder =>
-                    {                        
+                    {
                         loggingBuilder.AddSerilog(logger, dispose: true);
                     }
                 )
