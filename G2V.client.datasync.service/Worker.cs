@@ -1,7 +1,9 @@
 using G2V.client.datasync.service.Interfaces;
+using System.Diagnostics.CodeAnalysis;
 
 namespace G2V.client.datasync.service
 {
+    [ExcludeFromCodeCoverage]
     public class Worker : BackgroundService
     {
         private readonly ILogger<IOrchestrationContext> _logger;
